@@ -11,22 +11,19 @@ clear
 # Install package & command
 ./config.sh
 
-# Dockerfile1 (mariadb)
-docker build -t my-mariadb -f Dockerfile1 .
+clear
 
-# Execute mariadb
-docker run -d --name mariadb-container my-mariadb
-
-# Dockerfile2 (dolibarr)
-docker build -t my-dolibarr -f Dockerfile2 .
-
-# Execute dolibarr
-docker run -d --name dolibarr-container --link mariadb-container:mariadb -p 8200:80 my-dolibarr
+# Execute Docker-compose
+docker-compose up -d
 
 # Show conteners
 docker ps
 
+# Sleeptime
+sleep 10
+
 # Dolibarr's interface
-firefox $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dolibarr-container)
+# firefox $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dolibarr-container)
+firefox localhost:8200
 
 
