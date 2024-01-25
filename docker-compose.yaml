@@ -20,9 +20,9 @@ services:
     container_name: dolibarr
     restart: unless-stopped
     depends_on:
-        - mariadb
+      - mariadb
     ports:
-        - "8200:80"
+      - "8200:80"
     environment:
       - DOLI_ADMIN_LOGIN=admin
       - DOLI_ADMIN_PASSWORD=p4ssw0rd
@@ -30,10 +30,22 @@ services:
       - DOLI_DB_NAME=dolibarr
       - DOLI_DB_USER=dolibarr
       - DOLI_DB_PASSWORD=dolibarr
-      - TZ=Europe/MADRID
+      - TZ=Europe/PARIS
       - LANG=fr_FR
     volumes:
       - ./doli_html:/var/www/html
       - ./doli_docs:/var/www/documents
 
-     
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      - mariadb
+    environment:
+      - PMA_HOST=mariadb
+      - PMA_USER=dolibarr
+      - PMA_PASSWORD=dolibarr
+    ports:
+      - "8080:80"
+

@@ -20,10 +20,18 @@ docker-compose up -d
 docker ps
 
 # Sleeptime
-sleep 10
+echo -e "\nVeuillez attendre !"
+sleep 25
+
+# firefox $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dolibarr-container)
 
 # Dolibarr's interface
-# firefox $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dolibarr-container)
 firefox localhost:8200
+
+# phpmyadmin's interface
+firefox localhost:8080
+
+# IP mysql
+# docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mariadb
 
 

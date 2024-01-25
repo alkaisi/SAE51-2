@@ -21,6 +21,7 @@ sudo usermod -aG docker $USER
 
 # Installation des paquets nécessaires pour Dolibarr
 sudo apt install -y apache2 libapache2-mod-php php php-mysql php-gd php-curl php-xml php-json php-zip php-mbstring
+sudo apt -y install php php-cgi php-mysqli php-pear php-mbstring libapache2-mod-php php-common php-phpseclib php-mysql
 
 # Installation de Python et pip
 sudo apt install -y python3 python3-pip
