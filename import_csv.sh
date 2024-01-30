@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Informations de connexion à la base de données
-host="mariadb"
+host=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mariadb)
 user="dolibarr"
 password="dolibarr"
 database="dolibarr"
 
 # Chemin complet du fichier CSV
-fichier_csv="chemin/vers/votre/fichier.csv"
+fichier_csv="donnees.csv"
 
 # Table dans laquelle les données seront importées
 table="llx_user"
@@ -16,7 +16,7 @@ table="llx_user"
 mysql_cmd="mysql -h $host -u $user -p$password $database"
 
 # Construction de la commande SQL pour l'importation
-sql_cmd="LOAD DATA LOCAL INFILE '$fichier_csv' INTO TABLE $table FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES (firstname, lastname, email);"
+sql_cmd="LOAD DATA LOCAL INFILE '$fichier_csv' INTO TABLE $table FIELDS TERMINATED BY ';' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES;"
 
 # Exécution de la commande SQL
 $mysql_cmd -e "$sql_cmd"
