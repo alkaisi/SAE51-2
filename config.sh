@@ -32,4 +32,7 @@ pip3 install requests
 # Install Git
 sudo apt install git
 
+# Install faker
+sudo apt install -y faker
+
 

@@ -6,6 +6,8 @@ user="dolibarr"
 password="dolibarr"
 database="dolibarr"
 
+./delete_users.sh
+
 # Chemin complet du fichier CSV
 fichier_csv="donnees.csv"
 
