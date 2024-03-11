@@ -35,4 +35,10 @@ sudo apt install git
 # Install faker
 sudo apt install -y faker
 
+# Install Samba
+sudo apt-get install samba
+sudo service smbd restart
+
+mkdir -p /home/user/backup
+
 

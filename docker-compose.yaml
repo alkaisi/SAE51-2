@@ -14,6 +14,9 @@ services:
       - MYSQL_USER=dolibarr
       - MYSQL_PASSWORD=dolibarr
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
+    networks:
+      db_network:
+        ipv4_address: 172.20.0.2
 
   dolibarr:
     image: upshift/dolibarr:14.0
@@ -35,6 +38,9 @@ services:
     volumes:
       - ./doli_html:/var/www/html
       - ./doli_docs:/var/www/documents
+    networks:
+      db_network:
+        ipv4_address: 172.20.0.3
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -48,4 +54,14 @@ services:
       - PMA_PASSWORD=dolibarr
     ports:
       - "8080:80"
+    networks:
+      db_network:
+        ipv4_address: 172.20.0.4
+
+networks:
+  db_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
 

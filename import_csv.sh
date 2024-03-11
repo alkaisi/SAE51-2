@@ -1,12 +1,10 @@
 #!/bin/bash
 
 # Informations de connexion à la base de données
-host=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mariadb)
+host=172.20.0.2
 user="dolibarr"
 password="dolibarr"
 database="dolibarr"
-
-./delete_users.sh
 
 # Chemin complet du fichier CSV
 fichier_csv="donnees.csv"

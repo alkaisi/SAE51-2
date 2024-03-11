@@ -6,7 +6,7 @@ DB_PASSWORD="dolibarr"
 DB_NAME="dolibarr"
 
 # Récupérer l'adresse IP du conteneur MariaDB
-DB_HOST=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mariadb)
+DB_HOST=172.20.0.2
 
 # Requête SQL pour supprimer les utilisateurs sauf 'admin'
 SQL_QUERY="DELETE FROM llx_user WHERE login != 'admin';"
